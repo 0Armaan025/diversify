@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "590724034689",
+    "project_id": "diversify-new-00d",
+    "storage_bucket": "diversify-new-00d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590724034689:android:5c245ea21dcb8e77165d80",
+        "android_client_info": {
+          "package_name": "com.example.diversify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590724034689-paml5ugam1d5k9lstjn0g2vkhn6rv3bm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpnpb2nOgTQSfRB9FmAyTvboPGGDXCgOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590724034689-paml5ugam1d5k9lstjn0g2vkhn6rv3bm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
