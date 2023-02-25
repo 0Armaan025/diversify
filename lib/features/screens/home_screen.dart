@@ -1,5 +1,6 @@
 import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/common/widgets/post_widget.dart';
+import 'package:diversify/features/screens/add_post_screen.dart';
 import 'package:diversify/main/main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -138,7 +139,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   CircleAvatar(
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        moveScreen(context, false, AddPostScreen());
+                      },
                       icon: const Icon(Icons.add),
                     ),
                   ),
