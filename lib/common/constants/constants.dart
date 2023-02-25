@@ -36,7 +36,7 @@ AppBar myAppBar() {
             width: 40,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/tree_img.png'),
+                image: AssetImage('assets/images/diversify.png'),
                 fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.circular(10),
