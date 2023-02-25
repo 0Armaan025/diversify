@@ -35,19 +35,6 @@ class _FestivalsScreenState extends State<FestivalsScreen> {
           child: Column(
             children: [
               const SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: Text(
-                  "Festivals",
-                  style: GoogleFonts.poppins(
-                    color: Colors.green[600],
-                    fontWeight: FontWeight.bold,
-                    fontSize: 32,
-                  ),
-                ),
-              ),
-              const SizedBox(
                 height: 10,
               ),
               Padding(
@@ -147,6 +134,22 @@ class _FestivalsScreenState extends State<FestivalsScreen> {
                     ),
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: Text(
+                  "Festivals",
+                  style: GoogleFonts.poppins(
+                    color: Colors.green[600],
+                    fontWeight: FontWeight.bold,
+                    fontSize: 32,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               const SizedBox(
                 height: 20,

@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diversify/common/constants/constants.dart';
+import 'package:diversify/features/screens/festival/festival_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,6 +17,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _isPostTrigerred = false;
   bool _isFestivalsTriggered = false;
   bool _isProfileTrigerred = true;
+  String country = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
+  void getData() {
+    var data = firestore
+        .collection('users')
+        .doc(uid)
+        .get()
+        .then((DocumentSnapshot snapshot) {
+      country = snapshot.get('country');
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         _isProfileTrigerred = false;
                         _isFestivalsTriggered = false;
                         _isPostTrigerred = true;
-                        moveScreen(context, false, HomeScreen());
+                        moveScreen(context, false, const HomeScreen());
                         setState(() {});
                       },
                       child: Container(
@@ -66,7 +87,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onTap: () {
                         _isProfileTrigerred = true;
                         _isFestivalsTriggered = false;
-
+                        moveScreen(context, false, FestivalsScreen());
                         _isPostTrigerred = false;
                         setState(() {});
                       },
@@ -119,6 +140,81 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                   ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: CircleAvatar(
+                  radius: 45,
+                  backgroundImage: NetworkImage(
+                      'https://images.unsplash.com/photo-1510913415497-e34c432bd039?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8bGV0dGVyJTIwYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60'),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Let's win this!🔥",
+                style: GoogleFonts.poppins(
+                    color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Card(
+                elevation: 4.0,
+                child: Container(
+                  width: 200,
+                  height: 40,
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(posterName),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Card(
+                elevation: 4.0,
+                child: Container(
+                  width: 200,
+                  height: 40,
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(posterEmail),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Card(
+                elevation: 4.0,
+                child: Container(
+                  width: 200,
+                  height: 40,
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(country),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Text(
+                  "We are here to participate and go back home after winning 🔥, we all like traveling and visiting other cultures, this app shows about different places, festivals and cultures where hackers travel!",
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ),
             ],
