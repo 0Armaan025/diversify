@@ -1,52 +1,29 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diversify/common/constants/constants.dart';
-import 'package:diversify/common/widgets/festivals_widget.dart';
-import 'package:diversify/features/screens/festival/add_festival_screen.dart';
-import 'package:diversify/features/screens/profile/profile_screen.dart';
-import 'package:diversify/main/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class FestivalsScreen extends StatefulWidget {
-  const FestivalsScreen({super.key});
+import '../../../main/home_screen.dart';
+
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  State<FestivalsScreen> createState() => _FestivalsScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _FestivalsScreenState extends State<FestivalsScreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   bool _isPostTrigerred = false;
-  bool _isFestivalsTriggered = true;
-  bool _isProfileTrigerred = false;
+  bool _isFestivalsTriggered = false;
+  bool _isProfileTrigerred = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightGreen,
-        onPressed: () {
-          moveScreen(context, false, AddFestivalScreen());
-        },
-        child: Icon(Icons.add),
-      ),
       appBar: myAppBar(),
       body: SingleChildScrollView(
         child: Container(
           child: Column(
             children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: Text(
-                  "Festivals",
-                  style: GoogleFonts.poppins(
-                    color: Colors.green[600],
-                    fontWeight: FontWeight.bold,
-                    fontSize: 32,
-                  ),
-                ),
-              ),
               const SizedBox(
                 height: 10,
               ),
@@ -87,8 +64,9 @@ class _FestivalsScreenState extends State<FestivalsScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        _isProfileTrigerred = false;
-                        _isFestivalsTriggered = true;
+                        _isProfileTrigerred = true;
+                        _isFestivalsTriggered = false;
+
                         _isPostTrigerred = false;
                         setState(() {});
                       },
@@ -119,11 +97,6 @@ class _FestivalsScreenState extends State<FestivalsScreen> {
                         _isProfileTrigerred = true;
                         _isFestivalsTriggered = false;
                         _isPostTrigerred = false;
-                        moveScreen(
-                          context,
-                          false,
-                          ProfileScreen(),
-                        );
                         setState(() {});
                       },
                       child: Container(
@@ -148,29 +121,6 @@ class _FestivalsScreenState extends State<FestivalsScreen> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection('festivals')
-                      .snapshots(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(child: CircularProgressIndicator());
-                    } else {
-                      return Column(
-                          children: snapshot.data!.docs.map((document) {
-                        return FestivalWidget(
-                          image: document['image'],
-                          festivalName: document['festivalName'],
-                          goingOn: document['isGoingOn'],
-                          url: document['exploreLink'],
-                        );
-                      }).toList());
-                    }
-                  }),
             ],
           ),
         ),
