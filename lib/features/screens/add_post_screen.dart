@@ -1,7 +1,10 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/common/widgets/text_field.dart';
+import 'package:diversify/features/auth/controllers/auth_controller.dart';
+import 'package:diversify/features/auth/models/post.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -33,6 +36,19 @@ class _AddPostScreenState extends State<AddPostScreen> {
     // Pick an image
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     myFile = File(image!.path);
+    pickedFile = myFile;
+    setState(() {});
+  }
+
+  addPost(BuildContext context) {
+    PostModel post = PostModel(
+        countryName: _countryNameController.text,
+        description: _descriptionController.text,
+        festivalName: _festivalNameController.text,
+        postSenderUid: uid,
+        image: "");
+    AuthController controller = AuthController();
+    controller.post(context, post);
   }
 
   @override
@@ -73,10 +89,18 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 child: myFile == null
                     ? IconButton(
                         icon: Icon(Icons.add_a_photo),
-                        onPressed: () {},
+                        onPressed: () {
+                          pickImage();
+                        },
                       )
-                    : Image(
-                        image: FileImage(myFile!),
+                    : Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: FileImage(myFile!),
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
               ),
               const SizedBox(
@@ -99,7 +123,9 @@ class _AddPostScreenState extends State<AddPostScreen> {
               ),
               Center(
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    addPost(context);
+                  },
                   child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     width: double.infinity,

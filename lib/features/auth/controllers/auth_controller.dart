@@ -1,4 +1,5 @@
 import 'package:diversify/common/constants/constants.dart';
+import 'package:diversify/features/auth/models/post.dart';
 import 'package:diversify/features/auth/models/user.dart';
 import 'package:flutter/material.dart';
 
@@ -44,6 +45,33 @@ class AuthController {
       });
     } catch (e) {
       showSnackBar(context, '$e');
+    }
+  }
+
+  void post(BuildContext context, PostModel post) async {
+    try {
+      final ref = firebaseStorage.ref().child('posts').child("/$uid.jpg");
+      final uploadTask = ref.putFile(pickedFile!);
+
+      var dowurl = await ref.getDownloadURL();
+      PostModel newModel = PostModel(
+          countryName: post.countryName,
+          description: post.description,
+          festivalName: post.festivalName,
+          image: dowurl,
+          postSenderUid: uid);
+
+      firestore
+          .collection('posts')
+          .doc('${post.festivalName}+${post.countryName}')
+          .set(newModel.toMap())
+          .then(
+        (value) {
+          showSnackBar(context, 'done everything!');
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
     }
   }
 }

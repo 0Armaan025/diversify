@@ -4,8 +4,20 @@ import 'package:diversify/features/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class OnBoardingScreen extends StatelessWidget {
+class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
+
+  @override
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+}
+
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    uid = firebaseAuth.currentUser?.uid ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {
