@@ -76,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTap: () {
                               _isProfileTrigerred = false;
                               _isFestivalsTriggered = true;
+                              moveScreen(context, false, FestivalsScreen());
                               _isPostTrigerred = false;
                               setState(() {});
                             },
