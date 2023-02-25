@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class MyTextField extends StatefulWidget {
   final String hintText;
   final bool isObscure;
+  final maxLines;
   final TextEditingController controller;
   const MyTextField(
       {super.key,
       required this.hintText,
       required this.isObscure,
+      this.maxLines = 1,
       required this.controller});
 
   @override
@@ -32,13 +34,14 @@ class _MyTextFieldState extends State<MyTextField> {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
-              color: Colors.greenAccent,
+              color: Colors.green,
               width: 2,
             ),
           ),
           contentPadding: const EdgeInsets.all(16),
           labelText: widget.hintText,
         ),
+        maxLines: widget.maxLines == 1?null:1,
         obscureText: widget.isObscure,
       ),
     );

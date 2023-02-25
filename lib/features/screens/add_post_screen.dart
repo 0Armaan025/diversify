@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:diversify/common/constants/constants.dart';
+import 'package:diversify/common/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddPostScreen extends StatefulWidget {
   const AddPostScreen({super.key});
@@ -10,6 +14,27 @@ class AddPostScreen extends StatefulWidget {
 }
 
 class _AddPostScreenState extends State<AddPostScreen> {
+  final _festivalNameController = TextEditingController();
+  final _countryNameController = TextEditingController();
+  final _descriptionController = TextEditingController();
+  File? myFile = null;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _festivalNameController.dispose();
+    _countryNameController.dispose();
+    _descriptionController.dispose();
+  }
+
+  pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    // Pick an image
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    myFile = File(image!.path);
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -45,10 +70,65 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.grey[300],
                 ),
-                child: IconButton(
-                  icon: Icon(Icons.add_a_photo),
-                  onPressed: () {},
+                child: myFile == null
+                    ? IconButton(
+                        icon: Icon(Icons.add_a_photo),
+                        onPressed: () {},
+                      )
+                    : Image(
+                        image: FileImage(myFile!),
+                      ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              MyTextField(
+                  hintText: 'Enter the Festival Name.',
+                  isObscure: false,
+                  controller: _festivalNameController),
+              MyTextField(
+                  hintText: 'Enter the Country Name.',
+                  isObscure: false,
+                  controller: _countryNameController),
+              MyTextField(
+                  hintText: 'Enter the Description.',
+                  isObscure: false,
+                  controller: _descriptionController),
+              const SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    width: double.infinity,
+                    height: 50,
+                    padding: const EdgeInsets.all(12),
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Show to Everyone!",
+                      style: GoogleFonts.roboto(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.green,
+                          Colors.lightGreen,
+                          Colors.lightGreenAccent,
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
             ],
           ),
