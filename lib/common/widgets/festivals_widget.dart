@@ -2,22 +2,39 @@ import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/features/screens/festival/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FestivalWidget extends StatefulWidget {
   final String festivalName;
   final String image;
   final String goingOn;
-  const FestivalWidget(
-      {super.key,
-      required this.festivalName,
-      required this.image,
-      required this.goingOn});
+  final String url;
+  const FestivalWidget({
+    super.key,
+    required this.festivalName,
+    required this.image,
+    required this.goingOn,
+    required this.url,
+  });
 
   @override
   State<FestivalWidget> createState() => _FestivalWidgetState();
 }
 
 class _FestivalWidgetState extends State<FestivalWidget> {
+  Uri _url = Uri.parse('');
+  @override
+  void initState() {
+    super.initState();
+    _url = Uri.parse(widget.url);
+  }
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -81,7 +98,7 @@ class _FestivalWidgetState extends State<FestivalWidget> {
           ),
           ElevatedButton(
             onPressed: () {
-              moveScreen(context, false, ChatScreen());
+              _launchUrl();
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green[500],

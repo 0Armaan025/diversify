@@ -160,6 +160,7 @@ class _FestivalsScreenState extends State<FestivalsScreen> {
                           image: document['image'],
                           festivalName: document['festivalName'],
                           goingOn: document['isGoingOn'],
+                          url: document['exploreLink'],
                         );
                       }).toList());
                     }
