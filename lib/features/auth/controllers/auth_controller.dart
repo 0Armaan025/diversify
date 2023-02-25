@@ -43,6 +43,7 @@ class AuthController {
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) {
         print('done');
+        moveScreen(context, true, HomeScreen());
       });
     } catch (e) {
       showSnackBar(context, '$e');

@@ -9,7 +9,7 @@ class MyTextField extends StatefulWidget {
       {super.key,
       required this.hintText,
       required this.isObscure,
-      this.maxLines = 1,
+      this.maxLines = 2,
       required this.controller});
 
   @override
@@ -41,7 +41,7 @@ class _MyTextFieldState extends State<MyTextField> {
           contentPadding: const EdgeInsets.all(16),
           labelText: widget.hintText,
         ),
-        maxLines: widget.maxLines == 1?null:1,
+        maxLines: widget.maxLines == 1 ? null : 1,
         obscureText: widget.isObscure,
       ),
     );

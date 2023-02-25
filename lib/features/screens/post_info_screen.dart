@@ -53,61 +53,63 @@ class _PostInfoScreenState extends State<PostInfoScreen> {
                   ),
                 ),
                 alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          widget.model.description,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            widget.model.description,
+                            style: GoogleFonts.poppins(
+                              color: Colors.red,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: 1,
+                          width: double.infinity,
+                          color: Colors.red,
+                        ),
+                        Text(
+                          'User name:\t${widget.model.posterName}',
                           style: GoogleFonts.poppins(
                             color: Colors.red,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w600,
                             fontSize: 18,
                           ),
                         ),
-                      ),
-                      Container(
-                        height: 1,
-                        width: double.infinity,
-                        color: Colors.red,
-                      ),
-                      Text(
-                        'User name:\t${widget.model.posterName}',
-                        style: GoogleFonts.poppins(
-                          color: Colors.red,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
+                        Text(
+                          'User email:\t${widget.model.posterEmail}',
+                          style: GoogleFonts.poppins(
+                            color: Colors.red,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                          ),
                         ),
-                      ),
-                      Text(
-                        'User email:\t${widget.model.posterEmail}',
-                        style: GoogleFonts.poppins(
-                          color: Colors.red,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14,
+                        Text(
+                          'Festival Name:\t${widget.model.festivalName}',
+                          style: GoogleFonts.poppins(
+                            color: Colors.red,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                          ),
                         ),
-                      ),
-                      Text(
-                        'Festival Name:\t${widget.model.festivalName}',
-                        style: GoogleFonts.poppins(
-                          color: Colors.red,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
+                        Text(
+                          'Country:\t${widget.model.countryName}',
+                          style: GoogleFonts.poppins(
+                            color: Colors.red,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                          ),
                         ),
-                      ),
-                      Text(
-                        'Country:\t${widget.model.countryName}',
-                        style: GoogleFonts.poppins(
-                          color: Colors.red,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

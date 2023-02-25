@@ -119,6 +119,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
               MyTextField(
                   hintText: 'Enter the Description.',
                   isObscure: false,
+                  maxLines: 1,
                   controller: _descriptionController),
               const SizedBox(
                 height: 20,
