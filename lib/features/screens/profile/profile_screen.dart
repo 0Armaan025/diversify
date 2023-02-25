@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/features/screens/festival/festival_screen.dart';
+import 'package:diversify/features/screens/weekly_challenges/weekly_challenge_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -215,6 +216,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w400,
                   ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: double.infinity,
+                alignment: Alignment.centerLeft,
+                margin: const EdgeInsets.only(left: 20),
+                child: Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        moveScreen(context, false, WeeklyChallengeScreen());
+                      },
+                      child: Text(
+                        'You are awesome!\nwhy don\'t you try weekly challenges?',
+                        style: GoogleFonts.roboto(
+                          color: Colors.red,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
