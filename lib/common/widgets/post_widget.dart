@@ -1,15 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PostWidget extends StatelessWidget {
-  const PostWidget({super.key});
+class PostWidget extends StatefulWidget {
+  final String userName;
+  final String email;
+  final String description;
+  final String image;
+  final String countryName;
+  final String festivalName;
+  const PostWidget(
+      {super.key,
+      required this.userName,
+      required this.email,
+      required this.description,
+      required this.image,
+      required this.countryName,
+      required this.festivalName});
 
+  @override
+  State<PostWidget> createState() => _PostWidgetState();
+}
+
+class _PostWidgetState extends State<PostWidget> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 18.0,
+        vertical: 10,
+      ),
       child: Container(
         height: size.height * 0.43,
         width: double.infinity,
@@ -28,7 +49,7 @@ class PostWidget extends StatelessWidget {
                     padding: const EdgeInsets.all(3.0),
                     child: CircleAvatar(
                       backgroundImage: NetworkImage(
-                          'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png'),
+                          'https://images.unsplash.com/photo-1510913415497-e34c432bd039?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8bGV0dGVyJTIwYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60'),
                     ),
                   ),
                   Column(
@@ -38,7 +59,7 @@ class PostWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 13.0),
                         child: Text(
-                          "Armaan",
+                          "${widget.userName}",
                           style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontWeight: FontWeight.w700,
@@ -48,7 +69,7 @@ class PostWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 13.0),
                         child: Text(
-                          "armaan33000@gmail.com",
+                          widget.email,
                           style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontWeight: FontWeight.w700,
@@ -74,8 +95,7 @@ class PostWidget extends StatelessWidget {
                     height: size.height * 0.24,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(
-                            'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png'),
+                        image: NetworkImage(widget.image),
                         fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.circular(10),
@@ -91,7 +111,7 @@ class PostWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
-                    "Cillum laboris reprehenderit labore in deserunt aliqua veniam laborum sint amet exercitation sit. Aute est nostrud consectetur...",
+                    widget.description,
                     style: GoogleFonts.roboto(
                       color: Colors.black,
                       fontSize: 14,
@@ -107,7 +127,7 @@ class PostWidget extends StatelessWidget {
                   backgroundColor: Colors.green[100],
                   elevation: 1.2,
                   label: Text(
-                    'India',
+                    widget.countryName,
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.bold,
                     ),
@@ -120,7 +140,7 @@ class PostWidget extends StatelessWidget {
                   backgroundColor: Colors.greenAccent[600],
                   elevation: 1.2,
                   label: Text(
-                    'Roshni ka mela',
+                    widget.festivalName,
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.bold,
                     ),

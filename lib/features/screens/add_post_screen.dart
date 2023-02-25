@@ -42,6 +42,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
   addPost(BuildContext context) {
     PostModel post = PostModel(
+        posterEmail: posterEmail,
+        posterName: posterName,
         countryName: _countryNameController.text,
         description: _descriptionController.text,
         festivalName: _festivalNameController.text,

@@ -18,6 +18,8 @@ moveScreen(BuildContext context, bool isPushReplacement, Widget toScreen) {
 }
 
 File? pickedFile;
+String posterName = "";
+String posterEmail = "";
 
 AppBar myAppBar() {
   return AppBar(

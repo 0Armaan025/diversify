@@ -1,6 +1,7 @@
 import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/features/auth/models/post.dart';
 import 'package:diversify/features/auth/models/user.dart';
+import 'package:diversify/features/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class AuthController {
@@ -55,6 +56,8 @@ class AuthController {
 
       var dowurl = await ref.getDownloadURL();
       PostModel newModel = PostModel(
+          posterEmail: posterEmail,
+          posterName: posterName,
           countryName: post.countryName,
           description: post.description,
           festivalName: post.festivalName,
@@ -67,7 +70,7 @@ class AuthController {
           .set(newModel.toMap())
           .then(
         (value) {
-          showSnackBar(context, 'done everything!');
+          moveScreen(context, false, const HomeScreen());
         },
       );
     } catch (e) {

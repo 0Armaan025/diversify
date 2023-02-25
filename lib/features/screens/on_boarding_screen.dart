@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/features/auth/screens/login_screen.dart';
 import 'package:diversify/features/screens/home_screen.dart';
@@ -17,6 +18,22 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     // TODO: implement initState
     super.initState();
     uid = firebaseAuth.currentUser?.uid ?? '';
+    getData();
+  }
+
+  getData() async {
+    var data = firestore
+        .collection('users')
+        .doc(uid)
+        .get()
+        .then((DocumentSnapshot snapshot) {
+      posterName = snapshot.get('name');
+      posterEmail = snapshot.get('email');
+      setState(() {
+        print(posterName);
+        print(posterEmail);
+      });
+    });
   }
 
   @override

@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/common/widgets/post_widget.dart';
 import 'package:diversify/features/screens/add_post_screen.dart';
 import 'package:diversify/main/main.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,6 +18,12 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _isPostTrigerred = true;
   bool _isFestivalsTriggered = false;
   bool _isProfileTrigerred = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +158,28 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              PostWidget(),
+              StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('posts')
+                      .snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(child: CircularProgressIndicator());
+                    } else {
+                      return Column(
+                          children: snapshot.data!.docs.map((document) {
+                        return PostWidget(
+                          countryName: document['countryName'],
+                          description: document['description'],
+                          email: document['posterEmail'],
+                          userName: document['posterName'],
+                          image: document['image'],
+                          festivalName: document['festivalName'],
+                        );
+                      }).toList());
+                    }
+                  }),
             ],
           ),
         ),
