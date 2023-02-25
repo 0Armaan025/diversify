@@ -7,12 +7,14 @@ class FestivalPost {
   final String isGoingOn;
   final String posterUid;
   final String image;
+  final String exploreLink;
   FestivalPost({
     required this.festivalName,
     required this.startTiming,
     required this.isGoingOn,
     required this.posterUid,
     required this.image,
+    required this.exploreLink,
   });
 
   FestivalPost copyWith({
@@ -21,6 +23,7 @@ class FestivalPost {
     String? isGoingOn,
     String? posterUid,
     String? image,
+    String? exploreLink,
   }) {
     return FestivalPost(
       festivalName: festivalName ?? this.festivalName,
@@ -28,6 +31,7 @@ class FestivalPost {
       isGoingOn: isGoingOn ?? this.isGoingOn,
       posterUid: posterUid ?? this.posterUid,
       image: image ?? this.image,
+      exploreLink: exploreLink ?? this.exploreLink,
     );
   }
 
@@ -38,6 +42,7 @@ class FestivalPost {
       'isGoingOn': isGoingOn,
       'posterUid': posterUid,
       'image': image,
+      'exploreLink': exploreLink,
     };
   }
 
@@ -48,6 +53,7 @@ class FestivalPost {
       isGoingOn: map['isGoingOn'] as String,
       posterUid: map['posterUid'] as String,
       image: map['image'] as String,
+      exploreLink: map['exploreLink'] as String,
     );
   }
 
@@ -58,7 +64,7 @@ class FestivalPost {
 
   @override
   String toString() {
-    return 'FestivalPost(festivalName: $festivalName, startTiming: $startTiming, isGoingOn: $isGoingOn, posterUid: $posterUid, image: $image)';
+    return 'FestivalPost(festivalName: $festivalName, startTiming: $startTiming, isGoingOn: $isGoingOn, posterUid: $posterUid, image: $image, exploreLink: $exploreLink)';
   }
 
   @override
@@ -69,7 +75,8 @@ class FestivalPost {
         other.startTiming == startTiming &&
         other.isGoingOn == isGoingOn &&
         other.posterUid == posterUid &&
-        other.image == image;
+        other.image == image &&
+        other.exploreLink == exploreLink;
   }
 
   @override
@@ -78,6 +85,7 @@ class FestivalPost {
         startTiming.hashCode ^
         isGoingOn.hashCode ^
         posterUid.hashCode ^
-        image.hashCode;
+        image.hashCode ^
+        exploreLink.hashCode;
   }
 }

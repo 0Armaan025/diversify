@@ -150,11 +150,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 10,
                         ),
                         CircleAvatar(
+                          backgroundColor: Colors.green[900],
                           child: IconButton(
                             onPressed: () {
                               moveScreen(context, false, AddPostScreen());
                             },
-                            icon: const Icon(Icons.add),
+                            icon: const Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],

@@ -20,6 +20,7 @@ class AddFestivalScreen extends StatefulWidget {
 class _AddFestivalScreen extends State<AddFestivalScreen> {
   final _festivalNameController = TextEditingController();
   final _startingController = TextEditingController();
+  final _exploreLinkController = TextEditingController();
   File? myFile = null;
   bool yesBtn = true;
   bool noBtn = false;
@@ -30,6 +31,7 @@ class _AddFestivalScreen extends State<AddFestivalScreen> {
     super.dispose();
     _festivalNameController.dispose();
     _startingController.dispose();
+    _exploreLinkController.dispose();
   }
 
   addFestival() async {
@@ -41,6 +43,7 @@ class _AddFestivalScreen extends State<AddFestivalScreen> {
     }
     setState(() {});
     FestivalPost post = FestivalPost(
+        exploreLink: _exploreLinkController.text,
         image: "",
         festivalName: _festivalNameController.text,
         startTiming: _startingController.text,
@@ -123,6 +126,10 @@ class _AddFestivalScreen extends State<AddFestivalScreen> {
                   hintText: 'When did it start?',
                   isObscure: false,
                   controller: _startingController),
+              MyTextField(
+                  hintText: 'Add an explore link ;)',
+                  isObscure: false,
+                  controller: _exploreLinkController),
               InkWell(
                 onTap: () {
                   yesBtn = true;

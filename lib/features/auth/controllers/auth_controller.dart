@@ -90,6 +90,7 @@ class AuthController {
 
       FestivalPost model = FestivalPost(
           image: dowurl,
+          exploreLink: emModel.exploreLink,
           festivalName: emModel.festivalName,
           isGoingOn: emModel.isGoingOn,
           posterUid: emModel.posterUid,
