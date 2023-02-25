@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/common/widgets/post_widget.dart';
-import 'package:diversify/features/screens/add_post_screen.dart';
-import 'package:diversify/features/screens/festival_screen.dart';
+import 'package:diversify/features/screens/posts/add_post_screen.dart';
+import 'package:diversify/features/screens/festival/festival_screen.dart';
 import 'package:diversify/main/main.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,7 @@
 import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/features/auth/models/post.dart';
 import 'package:diversify/features/auth/models/user.dart';
-import 'package:diversify/features/screens/home_screen.dart';
+import 'package:diversify/main/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class AuthController {

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/features/auth/screens/login_screen.dart';
-import 'package:diversify/features/screens/home_screen.dart';
+import 'package:diversify/main/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

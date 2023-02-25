@@ -1,6 +1,6 @@
 import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/features/auth/models/post.dart';
-import 'package:diversify/features/screens/post_info_screen.dart';
+import 'package:diversify/features/screens/posts/post_info_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
