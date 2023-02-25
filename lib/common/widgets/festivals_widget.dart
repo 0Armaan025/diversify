@@ -2,21 +2,33 @@ import 'package:diversify/common/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class FestivalWidget extends StatelessWidget {
-  const FestivalWidget({super.key});
+class FestivalWidget extends StatefulWidget {
+  final String festivalName;
+  final String image;
+  final String goingOn;
+  const FestivalWidget(
+      {super.key,
+      required this.festivalName,
+      required this.image,
+      required this.goingOn});
 
+  @override
+  State<FestivalWidget> createState() => _FestivalWidgetState();
+}
+
+class _FestivalWidgetState extends State<FestivalWidget> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 20),
       width: double.infinity,
       height: size.height * 0.08,
       decoration: BoxDecoration(
         color: Colors.lightGreen[200],
         borderRadius: BorderRadius.circular(20),
       ),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
       alignment: Alignment.center,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -30,8 +42,8 @@ class FestivalWidget extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(
-                    'https://placeholder.com/assets/images/150x150-2-500x500.png'),
+                image: NetworkImage('${widget.image}'),
+                fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.circular(10),
             ),
@@ -44,7 +56,7 @@ class FestivalWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Roshni ka mela",
+                widget.festivalName,
                 style: GoogleFonts.roboto(
                   color: Colors.red[800],
                   fontWeight: FontWeight.bold,
@@ -52,7 +64,7 @@ class FestivalWidget extends StatelessWidget {
                 ),
               ),
               Text(
-                "Going on...",
+                widget.goingOn,
                 style: GoogleFonts.roboto(
                   color: Colors.red[800],
                   fontWeight: FontWeight.w500,

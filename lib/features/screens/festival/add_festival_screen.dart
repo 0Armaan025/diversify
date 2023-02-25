@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/common/widgets/text_field.dart';
 import 'package:diversify/features/auth/controllers/auth_controller.dart';
+import 'package:diversify/features/auth/models/festival.dart';
 import 'package:diversify/features/auth/models/post.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,6 +21,8 @@ class _AddFestivalScreen extends State<AddFestivalScreen> {
   final _festivalNameController = TextEditingController();
   final _startingController = TextEditingController();
   File? myFile = null;
+  bool yesBtn = true;
+  bool noBtn = false;
 
   @override
   void dispose() {
@@ -27,6 +30,25 @@ class _AddFestivalScreen extends State<AddFestivalScreen> {
     super.dispose();
     _festivalNameController.dispose();
     _startingController.dispose();
+  }
+
+  addFestival() async {
+    String goingOn = "";
+    if (yesBtn == true) {
+      goingOn = "Going on...";
+    } else {
+      goingOn = "Ended";
+    }
+    setState(() {});
+    FestivalPost post = FestivalPost(
+        image: "",
+        festivalName: _festivalNameController.text,
+        startTiming: _startingController.text,
+        isGoingOn: goingOn,
+        posterUid: uid);
+
+    AuthController controller = AuthController();
+    controller.addFestival(context, post);
   }
 
   pickImage() async {
@@ -37,8 +59,6 @@ class _AddFestivalScreen extends State<AddFestivalScreen> {
     pickedFile = myFile;
     setState(() {});
   }
-
-  addFestival(BuildContext context) {}
 
   @override
   Widget build(BuildContext context) {
@@ -103,16 +123,23 @@ class _AddFestivalScreen extends State<AddFestivalScreen> {
                   hintText: 'When did it start?',
                   isObscure: false,
                   controller: _startingController),
-              Container(
-                margin: const EdgeInsets.only(left: 25),
-                child: Text(
-                  "Is it going on?",
-                  style: GoogleFonts.poppins(
-                    color: Colors.red,
-                    fontSize: 20,
+              InkWell(
+                onTap: () {
+                  yesBtn = true;
+                  noBtn = false;
+                  setState(() {});
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(left: 25),
+                  child: Text(
+                    "Is it going on?",
+                    style: GoogleFonts.poppins(
+                      color: Colors.red,
+                      fontSize: 20,
+                    ),
                   ),
+                  alignment: Alignment.centerLeft,
                 ),
-                alignment: Alignment.centerLeft,
               ),
               const SizedBox(
                 height: 20,
@@ -120,23 +147,41 @@ class _AddFestivalScreen extends State<AddFestivalScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    alignment: Alignment.center,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.greenAccent[200],
-                      child: Icon(
-                        Icons.done,
-                        size: 30,
+                  InkWell(
+                    onTap: () {
+                      yesBtn = true;
+                      noBtn = false;
+                      setState(() {});
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: CircleAvatar(
+                        backgroundColor: yesBtn == true
+                            ? Colors.green[800]
+                            : Colors.greenAccent[200],
+                        child: Icon(
+                          Icons.done,
+                          size: 30,
+                        ),
                       ),
                     ),
                   ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.greenAccent[200],
-                      child: Icon(
-                        Icons.close,
-                        size: 30,
+                  InkWell(
+                    onTap: () {
+                      yesBtn = false;
+                      noBtn = true;
+                      setState(() {});
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: CircleAvatar(
+                        backgroundColor: noBtn == true
+                            ? Colors.green[800]
+                            : Colors.greenAccent[200],
+                        child: Icon(
+                          Icons.close,
+                          size: 30,
+                        ),
                       ),
                     ),
                   ),
@@ -145,12 +190,11 @@ class _AddFestivalScreen extends State<AddFestivalScreen> {
               const SizedBox(
                 height: 20,
               ),
-              const SizedBox(
-                height: 10,
-              ),
               Center(
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    addFestival();
+                  },
                   child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     width: double.infinity,

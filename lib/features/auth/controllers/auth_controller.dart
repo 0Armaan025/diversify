@@ -1,4 +1,5 @@
 import 'package:diversify/common/constants/constants.dart';
+import 'package:diversify/features/auth/models/festival.dart';
 import 'package:diversify/features/auth/models/post.dart';
 import 'package:diversify/features/auth/models/user.dart';
 import 'package:diversify/main/home_screen.dart';
@@ -69,6 +70,35 @@ class AuthController {
           .collection('posts')
           .doc('${post.festivalName}+${post.countryName}')
           .set(newModel.toMap())
+          .then(
+        (value) {
+          moveScreen(context, false, const HomeScreen());
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
+
+  void addFestival(BuildContext context, FestivalPost emModel) async {
+    try {
+      final ref =
+          firebaseStorage.ref().child('festivalPosts').child("/$uid.jpg");
+      final uploadTask = ref.putFile(pickedFile!);
+
+      var dowurl = await ref.getDownloadURL();
+
+      FestivalPost model = FestivalPost(
+          image: dowurl,
+          festivalName: emModel.festivalName,
+          isGoingOn: emModel.isGoingOn,
+          posterUid: emModel.posterUid,
+          startTiming: emModel.startTiming);
+
+      firestore
+          .collection('festivals')
+          .doc('${model.festivalName}+${model.posterUid}')
+          .set(model.toMap())
           .then(
         (value) {
           moveScreen(context, false, const HomeScreen());

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/common/widgets/festivals_widget.dart';
 import 'package:diversify/features/screens/festival/add_festival_screen.dart';
@@ -144,7 +145,25 @@ class _FestivalsScreenState extends State<FestivalsScreen> {
               const SizedBox(
                 height: 20,
               ),
-              FestivalWidget(),
+              StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('festivals')
+                      .snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(child: CircularProgressIndicator());
+                    } else {
+                      return Column(
+                          children: snapshot.data!.docs.map((document) {
+                        return FestivalWidget(
+                          image: document['image'],
+                          festivalName: document['festivalName'],
+                          goingOn: document['isGoingOn'],
+                        );
+                      }).toList());
+                    }
+                  }),
             ],
           ),
         ),
