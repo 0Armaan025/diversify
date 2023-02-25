@@ -1,5 +1,6 @@
 import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/common/widgets/festivals_widget.dart';
+import 'package:diversify/features/screens/festival/add_festival_screen.dart';
 import 'package:diversify/main/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,7 +22,9 @@ class _FestivalsScreenState extends State<FestivalsScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightGreen,
-        onPressed: () {},
+        onPressed: () {
+          moveScreen(context, false, AddFestivalScreen());
+        },
         child: Icon(Icons.add),
       ),
       appBar: myAppBar(),
