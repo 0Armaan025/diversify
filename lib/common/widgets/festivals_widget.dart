@@ -27,6 +27,7 @@ class _FestivalWidgetState extends State<FestivalWidget> {
       height: size.height * 0.08,
       decoration: BoxDecoration(
         color: Colors.lightGreen[200],
+        border: Border.all(color: Colors.red, width: 2),
         borderRadius: BorderRadius.circular(20),
       ),
       alignment: Alignment.center,

@@ -37,7 +37,7 @@ class _AddFestivalScreen extends State<AddFestivalScreen> {
     if (yesBtn == true) {
       goingOn = "Going on...";
     } else {
-      goingOn = "Ended";
+      goingOn = "Ended...";
     }
     setState(() {});
     FestivalPost post = FestivalPost(
