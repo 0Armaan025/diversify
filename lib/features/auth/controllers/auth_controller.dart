@@ -28,6 +28,7 @@ class AuthController {
             .set(newData.toMap())
             .then((value) {
           showSnackBar(context, 'done');
+          moveScreen(context, true, HomeScreen());
         }).onError((error, stackTrace) {
           showSnackBar(
               context, 'An error has occurred while signing up $error.message');
@@ -110,4 +111,3 @@ class AuthController {
     }
   }
 }
-  
