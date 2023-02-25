@@ -76,3 +76,4 @@ final firebaseStorage = FirebaseStorage.instance;
 //some other vars
 
 String uid = "";
+
