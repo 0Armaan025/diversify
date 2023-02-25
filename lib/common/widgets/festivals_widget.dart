@@ -1,4 +1,5 @@
 import 'package:diversify/common/constants/constants.dart';
+import 'package:diversify/features/screens/festival/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -76,10 +77,12 @@ class _FestivalWidgetState extends State<FestivalWidget> {
             ],
           ),
           SizedBox(
-            width: size.width * 0.08,
+            width: size.width * 0.12,
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              moveScreen(context, false, ChatScreen());
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green[500],
               elevation: 6.0,

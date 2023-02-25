@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diversify/common/constants/constants.dart';
 import 'package:diversify/common/widgets/post_widget.dart';
+import 'package:diversify/features/screens/festival/chat/chat_screen.dart';
 import 'package:diversify/features/screens/posts/add_post_screen.dart';
 import 'package:diversify/features/screens/festival/festival_screen.dart';
 import 'package:diversify/main/main.dart';
@@ -157,6 +158,29 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        moveScreen(context, true, ChatScreen());
+                      },
+                      child: Container(
+                          width: 220,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.lightGreen[400],
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Connect with community!",
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          )),
                     ),
                     const SizedBox(
                       height: 20,
