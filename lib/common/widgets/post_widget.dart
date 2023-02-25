@@ -104,7 +104,27 @@ class PostWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Chip(
-                  label: Text('India'),
+                  backgroundColor: Colors.green[100],
+                  elevation: 1.2,
+                  label: Text(
+                    'India',
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Chip(
+                  backgroundColor: Colors.greenAccent[600],
+                  elevation: 1.2,
+                  label: Text(
+                    'Roshni ka mela',
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ],
             ),
